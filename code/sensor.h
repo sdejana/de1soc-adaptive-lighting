@@ -9,8 +9,8 @@
 int8_t sensorInit(void);
 
 /*
-    Dummy func used for simulating sensor data.
+    Real function used to read sensor data.
  */
-int32_t sensorReadData(void);
+double sensorReadData(void);
 
 #endif

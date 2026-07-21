@@ -3,43 +3,60 @@
 #include <stdlib.h>
 
 
-#define DATA_PATH "test_data.txt"
+#define SENSOR_IIO_DIR_PATH "/sys/bus/iio/devices/iio:device0"
+#define SENSOR_SCALE 0.25
 
-/* Current implementation covers only test data processing (without real data from sensor). */
+/*
+    Used to calibrate sensor.
+*/
+static void setParam (const char* paramName, const char* paramValue)
+{
+    char path[128];
+    snprintf(path, sizeof(path), "%s/%s", SENSOR_IIO_DIR_PATH, paramName);
+
+    FILE* fp = fopen(path, "w");
+    if(fp == NULL)
+    {
+        printf("Failed to open file [%s] \n", path);
+        return;
+    }
+
+    fputs(paramValue, fp);
+
+    fclose(fp);
+}
 
 int8_t sensorInit(void)
 {
-    FILE *fp = fopen(DATA_PATH, "w");
-
-    if(fp == NULL)
-    {
-        printf("Failed to open file [%s] \n", DATA_PATH);
-        return -1;
-    }
-    
-    fprintf(fp, "200\n");
-    fclose(fp);
+    setParam("in_illuminance_scale", "0.25");
+    setParam("in_illuminance_integration_time", "0.1");
 
     return 0;
 }
 
-int32_t sensorReadData(void)
+double sensorReadData(void)
 {
-    FILE *fp = fopen(DATA_PATH, "r");
-    int32_t luxData = 0;
+    char path[128];
 
+    snprintf(path, sizeof(path), "%s/in_illuminance_raw", SENSOR_IIO_DIR_PATH);
+
+    FILE *fp = fopen(path, "r");
     if(fp == NULL)
     {
-        printf("Failed to open file [%s] \n", DATA_PATH);
+        printf("Failed to open file [%s] \n", path);
         return -1;
     }
 
-    if(fscanf(fp, "%d", &luxData) != 1)
+    double rawLuxData = 0.0;
+
+    if (fscanf(fp, "%lf", &rawLuxData) != 1)
     {
-        printf("Failed to fetch test data from [%s] \n", DATA_PATH);
-        return -1;
+        printf("Failed to read valid data from [%s] \n", path);
+        fclose(fp);
+        return -1.0;
     }
 
-    return luxData;
+    fclose(fp);
 
+    return rawLuxData * SENSOR_SCALE;
 }
