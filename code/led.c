@@ -28,11 +28,8 @@ void ledSet(uint8_t ledIndex, uint8_t ledOn)
 
 void ledUpdateFromLux(uint8_t ledCount)
 {
-    if (ledCount < LED_NUM)
+	for (uint8_t i = 0; i < LED_NUM; i++)
     {
-        for (uint8_t i = 0; i < LED_NUM; i++)
-        {
-            ledSet(i, i < ledCount);
-        }
+    	ledSet(i, i < ledCount);
     }
 }

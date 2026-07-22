@@ -6,12 +6,12 @@
 #include "led.h"
 
 #define MAIN_DELAY_INTERVAL 200000
-#define MAIN_STABLE_READS_REQ 4
+#define MAIN_STABLE_READS_REQ 3
 
 static uint8_t mainComputeTarget(double lux) 
 {
-    double minLux = 1.0;    // near-dark
-    double maxLux = 500.0;  // bright room lighting
+    double minLux = 30.0;    // near-dark
+    double maxLux = 3587.0;  // bright room lighting
     if (lux < minLux) lux = minLux;
     if (lux > maxLux) lux = maxLux;
 
