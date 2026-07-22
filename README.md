@@ -6,7 +6,7 @@ This project was developed as part of the **Embedded Computer Systems** (*Ugrađ
 
 Integrate the ambient light measurement sensor, available on the Ambient 11 Click board (integrated circuit VEML6035), onto the DE1-SoC platform. Implement an application that enables adaptive room lighting control based on the information received from the given sensor.
 
-## Hardware Design
+## Hardware Setup
 
 ## Embedded Linux Setup
 
