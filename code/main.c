@@ -17,7 +17,7 @@ static uint8_t mainComputeTarget(double lux)
 
     double decades = log10(maxLux / minLux); // how many decades total
     double frac = log10(lux / minLux) / decades; // 0 (dark) .. 1 (bright)
-    uint8_t count = (uint8_t)((1.0 - frac) * NUM_LEDS + 0.5);
+    uint8_t count = (uint8_t)((1.0 - frac) * LED_NUM + 0.5);
     return count;
 }
 
