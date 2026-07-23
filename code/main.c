@@ -11,7 +11,7 @@
 static uint8_t mainComputeTarget(double lux) 
 {
     double minLux = 30.0;    // near-dark
-    double maxLux = 3587.0;  // bright room lighting
+    double maxLux = 3000.0;  // bright room lighting
     if (lux < minLux) lux = minLux;
     if (lux > maxLux) lux = maxLux;
 
