@@ -28,14 +28,35 @@ The sensor pins are connected to the GPIO 0 expansion header as shown in the tab
 Here is the physical connection between the **DE1-SoC** board and the **Ambient 11 Click** sensor via the **GPIO 0** header:
 
 <p align="center">
-  <img src="docs/img/img_de1soc_hardwarejpg" width="450" alt="Hardware Setup">
+  <img src="docs/img/img_de1soc_hardware.jpg" alt="Hardware Setup" width="600"/>
   <br>
-  <sub><b>Image 1:</b> Physical connection between DE1-SoC and Ambient 11 Click sensor</sub>
+  <em>Image 1: Physical wiring between DE1-SoC and Ambient 11 Click sensor</em>
 </p>
 
+Connecting the board via an Ethernet cable with SSH enabled and a static IP configured is optional. If you wish to use SSH, connect the board directly to your PC using an **Ethernet cable**, as shown in the image above.
 
 ## Embedded Linux Setup
 
+Prerequisite: This project requires the cross-compilation toolchain for the DE1-SoC platform. It is assumed that the toolchain is already installed and exported in your system's PATH as done in Lab 1.
+This project uses Buildroot for system generation. The required setup and custom configurations are listed below.
+
+### Setting up Buildroot
+
+First, clone the repository and ensure that [all required dependencies and tools](https://buildroot.org/downloads/manual/manual.html#requirement-mandatory) are installed.
+
+```bash
+git clone https://gitlab.com/buildroot.org/buildroot.git
+cd buildroot
+git checkout 2024.02
+```
+The base for this project is the working configuration output from the lab exercises (*de1_soc_defconfig*). The next step is to copy *de1_soc_defconfig* into the `configs/` directory of your Buildroot installation:
+```bash
+cp path/to/this/repository/buildroot/board/terasic/de1soc_cyclone5/de1_soc_defconfig path/to/buildroot/configs/
+```
+and run 
+```bash
+make de1_soc_defconfig
+```
 ## User Application Development
 
 ## Testing & Demo
