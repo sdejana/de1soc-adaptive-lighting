@@ -8,6 +8,28 @@ Integrate the ambient light measurement sensor, available on the Ambient 11 Clic
 
 ## Hardware Setup
 
+Required hardware:
+- DE1-SoC development board with power supply and UART cable.
+- Ambient 11 Click (VEML6035) board.
+- SD card.
+- Ethernet cable (for SSH connection).
+  
+### Connecting Ambient 11 Click to target board
+
+The pin layout and hardware schematics can be found in the [DE1-SoC Schematic Diagram](https://people.ece.cornell.edu/land/courses/ece5760/DE1_SOC/DE1-SoC%20schematic.pdf) and the course User Manual provided by the professor (`hps-soc-system.pdf` in docs). 
+The sensor pins are connected to the GPIO 0 expansion header as shown in the table below:
+| Sensor Pin (Ambient 11 Click) | GPIO 0 Header Pin | Description |
+| :--- | :--- | :--- |
+| **VCC** | **Pin 29** | Power Supply (3.3V) |
+| **GND** | **Pin 30** | Ground |
+| **SDA** | **Pin 1** | $I^2C2$ Serial Data |
+| **SCL** | **Pin 2** | $I^2C2$ Serial Clock |
+
+Here is the physical connection between the **DE1-SoC** board and the **Ambient 11 Click** sensor via the **GPIO 0** header:
+
+![DE1-SoC and Ambient 11 Click Wiring](docs/img/img_de1soc_hardware.jpg)
+
+
 ## Embedded Linux Setup
 
 ## User Application Development
