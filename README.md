@@ -27,7 +27,11 @@ The sensor pins are connected to the GPIO 0 expansion header as shown in the tab
 
 Here is the physical connection between the **DE1-SoC** board and the **Ambient 11 Click** sensor via the **GPIO 0** header:
 
-![DE1-SoC and Ambient 11 Click Wiring](docs/img/img_de1soc_hardware.jpg)
+<p align="center">
+  <img src="docs/img/img_de1soc_hardwarejpg" width="450" alt="Hardware Setup">
+  <br>
+  <sub><b>Image 1:</b> Physical connection between DE1-SoC and Ambient 11 Click sensor</sub>
+</p>
 
 
 ## Embedded Linux Setup
