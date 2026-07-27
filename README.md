@@ -25,12 +25,20 @@ The sensor pins are connected to the GPIO 0 expansion header as shown in the tab
 | **SDA** | **Pin 1** | $I^2C2$ Serial Data |
 | **SCL** | **Pin 2** | $I^2C2$ Serial Clock |
 
+Here is the pinout image extracted from [DE1-SoC Schematic Diagram](https://people.ece.cornell.edu/land/courses/ece5760/DE1_SOC/DE1-SoC%20schematic.pdf):
+
+<p align="center">
+  <img src="docs/img/img_de1soc_pinout.jpg" alt="Hardware Setup" width="600"/>
+  <br>
+  <em>Image 1: DE1-SoC GPIO_0 header pinout </em>
+</p>
+
 Here is the physical connection between the **DE1-SoC** board and the **Ambient 11 Click** sensor via the **GPIO 0** header:
 
 <p align="center">
   <img src="docs/img/img_de1soc_hardware.jpg" alt="Hardware Setup" width="600"/>
   <br>
-  <em>Image 1: Physical wiring between DE1-SoC and Ambient 11 Click sensor</em>
+  <em>Image 2: Physical wiring between DE1-SoC and Ambient 11 Click sensor</em>
 </p>
 
 Connecting the board via an Ethernet cable with SSH enabled and a static IP configured is optional. If you wish to use SSH, connect the board directly to your PC using an **Ethernet cable**, as shown in the image above.
