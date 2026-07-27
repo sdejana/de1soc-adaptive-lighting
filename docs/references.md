@@ -2,7 +2,7 @@ This document lists all the official manuals, datasheets, source repositories, a
 
 * **DE1-SoC Schematic File** : https://people.ece.cornell.edu/land/courses/ece5760/DE1_SOC/DE1-SoC%20schematic.pdf
 * **DE1-SoC User manual**: https://people.ece.cornell.edu/land/courses/ece5760/DE1_SOC/DE1-SoC_User_manualv.1.2.2_revE.pdf
-* **Bootlin**: https://elixir.bootlin.com/linux/v7.1.2/source/Documentation/devicetree/bindings, https://elixir.bootlin.com/linux/v7.1.2/source/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
+* **Bootlin**: https://elixir.bootlin.com/linux/v6.1.38/source/Documentation/devicetree/bindings, https://elixir.bootlin.com/linux/v6.1.38/source/Documentation/devicetree/bindings/iio/light/veml6030.yaml, 
 * **VEML6030, VEML6035 datasheet**: https://www.vishay.com/docs/84889/veml6035.pdf
 * **Buildroot manual**: https://buildroot.org/downloads/manual/manual.html
 * **Course repository**: https://github.com/etf-unibl/urs-2026
