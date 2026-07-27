@@ -160,6 +160,10 @@ Device Drivers  --->
 3. Set the Vishay VEML6030 ambient light sensor driver to <M> (Module).
 
 4. Save the configuration and exit.
+   ```bash
+   make linux-savedefconfig
+	cp output/build/linux-socfpga-6.1.38-lts/defconfig board/terasic/de1soc_cyclone5/de1_soc_defconfig
+   ```
 
 > [!NOTE]:  
 > Compiling the driver as a module (.ko) allows it to be loaded dynamically on the target system using `modprobe veml6030` or `insmod`.
@@ -182,8 +186,7 @@ Device Drivers  --->
    ```
 4. Sanity check - Before flashing the image onto the SD card, run these quick verification commands from your Buildroot root directory to confirm your changes were compiled correctly:
    ```bash
-   dtc -I dtb -O dts output/images/socfpga_cyclone5_de1_soc.dtb 2>/dev/null \
-    | grep -A6 "i2c-hps-to-fpga\|veml6035"
+   dtc -I dtb -O dts output/images/socfpga_cyclone5_de1_soc.dtb 2>/dev/null | grep -A6 "i2c-hps-to-fpga\|veml6035"
 
    strings output/images/uboot-env.bin | grep fpga_load
    ```
@@ -236,6 +239,7 @@ make CROSS_COMPILE=arm-linux-
 ```bash
 file adaptive_light
 # Expected output: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV)...
+```
 
 4. Transfer to the DE1-SoC Board:
 
@@ -266,7 +270,7 @@ When covering the VEML6035 sensor or exposing it to light, the application logs 
 -  **A stale `.dtb`, U-Boot environment image, or FPGA bitstream can persist silently after a source change.**
   	Always verify the actual built artifact before flashing:
 	```bash
-  	dtc -I dtb -O dts output/images/socfpga_cyclone5_de1_soc.dtb 2>/dev/null \ | grep -A6 "i2c-hps-to-fpga\|veml6035"
+  	dtc -I dtb -O dts output/images/socfpga_cyclone5_de1_soc.dtb 2>/dev/null | grep -A6 "i2c-hps-to-fpga\|veml6035"
   	strings output/images/uboot-env.bin | grep fpga_load
 	```
   	and always flash the complete `sdcard.img` via `dd` rather than copying individual files, to avoid partial/inconsistent updates.
