@@ -162,7 +162,7 @@ Device Drivers  --->
 4. Save the configuration and exit.
    ```bash
    make linux-savedefconfig
-	cp output/build/linux-socfpga-6.1.38-lts/defconfig board/terasic/de1soc_cyclone5/de1_soc_defconfig
+   cp output/build/linux-socfpga-6.1.38-lts/defconfig board/terasic/de1soc_cyclone5/de1_soc_defconfig
    ```
 
 > [!NOTE]:  
