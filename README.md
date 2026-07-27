@@ -237,4 +237,12 @@ When covering the VEML6035 sensor or exposing it to light, the application logs 
 
 ## Testing & Demo
 
+![Adaptive Lighting Control Demo](docs/img/img_demo.gif)
+
+> **Demonstration highlight:** Covering the sensor reduces the lux value, triggering more LEDs to light up to compensate for the darkness.
+
+
+
+
+
 
