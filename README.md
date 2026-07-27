@@ -49,19 +49,19 @@ git clone https://gitlab.com/buildroot.org/buildroot.git
 cd buildroot
 git checkout 2024.02
 ```
-The base for this project is the working configuration output from the lab exercises (*de1_soc_defconfig*). The next step is to copy *de1_soc_defconfig* into the `configs/` directory of your Buildroot installation:
-```bash
-cp path/to/this/repository/buildroot/board/terasic/de1soc_cyclone5/de1_soc_defconfig path/to/buildroot/configs/
+The base for this project is the working configuration output from the lab exercises (*terasic_de1soc_cyclone5_defconfig*). You need to copy this file to `path/to/buildroot/configs/`
+``` bash
+cp path/to/this/repository/configs/terasic_de1soc_cyclone5_defconfig path/to/buildroot/configs/
 ```
 and run 
 ```bash
-make de1_soc_defconfig
+make terasic_de1soc_cyclone5_defconfig
 ```
 In addition to the configuration file, you must copy the entire `board` directory from this repository to your Buildroot installation:
 ```bash
 cp -r path/to/this/repository/buildroot/board/terasic/de1soc_cyclone5 path/to/buildroot/board/terasic/de1soc_cyclone5/
 ```
-After applying the base configuration with `make de1_soc_defconfig`, you need to adjust the Buildroot settings:
+After applying the base configuration with `make terasic_de1soc_cyclone5_defconfig`, you need to adjust the Buildroot settings:
 - Move to `buildroot` directory:
   ```bash
   cd path/to/buildroot/
@@ -135,7 +135,7 @@ The rest of modifications are listed in the mentioned *dts* file. This file will
 
 ### Linux kernel
 
-The VEML6035 driver was configured to be compiled as a loadable kernel module (<M>). 
+The kernel-level defconfig for this board (`de1_soc_defconfig`) is already in place from the `board` directory copy step above, at `board/terasic/de1soc_cyclone5/de1_soc_defconfig`. The VEML6035 driver was configured to be compiled as a loadable kernel module (<M>). 
 
 To configure the kernel options in Buildroot:
 1. Open the Linux kernel configuration menu:
@@ -154,7 +154,7 @@ Device Drivers  --->
 4. Save the configuration and exit.
 
 > [!NOTE]:  
-> Compiling the driver as a module (.ko) allows it to be loaded dynamically on the target system using `modprobe veml6035` or `insmod`.
+> Compiling the driver as a module (.ko) allows it to be loaded dynamically on the target system using `modprobe veml6030` or `insmod`.
 
 ### Build and deploy sequence
 
