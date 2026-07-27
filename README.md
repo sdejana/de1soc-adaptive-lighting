@@ -147,9 +147,9 @@ make linux-menuconfig
 Device Drivers  --->
   <*> Industrial I/O support  --->
     Light sensors  --->
-      <M> Vishay VEML6035 ambient light sensor
+      <M> Vishay VEML6030 ambient light sensor
 ```
-3. Set the Vishay VEML6035 ambient light sensor driver to <M> (Module).
+3. Set the Vishay VEML6030 ambient light sensor driver to <M> (Module).
 
 4. Save the configuration and exit.
 
@@ -180,7 +180,17 @@ Device Drivers  --->
    strings output/images/uboot-env.bin | grep fpga_load
    ```
 After these steps, flash `sdcard.img` to SD card as explained earlier.
-   
+
+## Driver Setup
+
+This project relies on the existing **VEML6030** IIO driver, like mentioned in Linux kernel subsection. If you followed this manual from the beginning, this should be already handled. 
+ Confirm the driver loaded successfully after boot:
+```bash
+lsmod | grep veml
+dmesg | grep -i veml
+cat /sys/bus/iio/devices/iio:device0/name   # expected: veml6030
+```
+
 ## User Application Development
 
 This application implements an adaptive room lighting controller. It continuously reads illuminance values (in lux) from the VEML6035 sensor and dynamically adjusts the number of active user LEDs on the FPGA side. 
@@ -241,7 +251,17 @@ When covering the VEML6035 sensor or exposing it to light, the application logs 
 
 > **Demonstration highlight:** Covering the sensor reduces the lux value, triggering more LEDs to light up to compensate for the darkness.
 
+## Known Issues & Limitations
 
+- **I2C bus enumeration order is not guaranteed stable across boots.**
+	`/dev/i2c-N` numbering depends on driver probe order and can change between boots.
+-  **A stale `.dtb`, U-Boot environment image, or FPGA bitstream can persist silently after a source change.**
+  	Always verify the actual built artifact before flashing:
+	```bash
+  	dtc -I dtb -O dts output/images/socfpga_cyclone5_de1_soc.dtb 2>/dev/null \ | grep -A6 "i2c-hps-to-fpga\|veml6035"
+  	strings output/images/uboot-env.bin | grep fpga_load
+	```
+  	and always flash the complete `sdcard.img` via `dd` rather than copying individual files, to avoid partial/inconsistent updates.
 
 
 
